@@ -1,4 +1,5 @@
 import styles from "./postUser.module.css";
+import { getUser } from "@/lib/data";
 const getSingleUser = async (userId) => {
     const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`, {cache: 'no-store'})
     if(!response.ok) {
@@ -10,9 +11,9 @@ const getSingleUser = async (userId) => {
 
 const postUser = async ({userId}) => {
 
-    const user = await getSingleUser(userId)
-    console.log("userId")
-    console.log("user", user)  
+    // const user = await getSingleUser(userId)
+
+    const user = await getUser(userId)
     
   return (
     <div className={styles.container}>

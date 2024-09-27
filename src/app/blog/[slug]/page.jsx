@@ -2,14 +2,19 @@ import Image from 'next/image'
 import styles from './singlePost.module.css'
 import PostUser from '@/components/postUser/PostUser'
 import { Suspense } from 'react'
+import { getPost } from '@/lib/data'
 
-const getSinglePost = async (slug) => {
-  const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`)
-  if(!response.ok) {
-    throw new Error('Something went wrong')
-  }
-  return response.json()
-}
+
+
+
+// Fetching data from an API
+// const getSinglePost = async (slug) => {
+//   const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`)
+//   if(!response.ok) {
+//     throw new Error('Something went wrong')
+//   }
+//   return response.json()
+// }
 
 
 const SinglePostPage = async ({params}) => {
@@ -20,7 +25,10 @@ const SinglePostPage = async ({params}) => {
 
   const {slug} = params;
 
-  const post = await getSinglePost(slug)
+  // const post = await getSinglePost(slug)
+
+  // fetching data without an API
+  const post = await getPost(slug)
 
   return (
     <div className={styles.container} >
@@ -28,7 +36,7 @@ const SinglePostPage = async ({params}) => {
         <Image src="https://images.pexels.com/photos/28539589/pexels-photo-28539589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="post" fill className={styles.img} />
       </div>
       <div className={styles.textContainer} >
-        <h1 className={styles.title} >{post.title}</h1>
+        <h1 className={styles.title} >{post?.title}</h1>
         <div className={styles.detail}>
           <Image src="https://images.pexels.com/photos/28539589/pexels-photo-28539589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="post" width={50} height={50} className={styles.avatar} />
           
