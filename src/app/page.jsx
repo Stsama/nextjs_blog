@@ -4,7 +4,7 @@ import styles from './home.module.css';
 
 const Home = () => {
 
-  console.log("Home Page");
+
   return <div className={styles.container}>
     <div className={styles.textContainer}>
       <h1 className={styles.title}>Creative Thoughts Agency.</h1>
