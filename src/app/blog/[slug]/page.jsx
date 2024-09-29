@@ -4,7 +4,14 @@ import PostUser from '@/components/postUser/PostUser'
 import { Suspense } from 'react'
 import { getPost } from '@/lib/data'
 
-
+export const generateMetadata = async ({params}) => {
+  const {slug} = params;
+  const post = await getPost(slug)
+  return {
+    title: post.title,
+    description: post.body.slice(0, 100)
+  }
+}
 
 
 // Fetching data from an API

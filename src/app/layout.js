@@ -5,9 +5,12 @@ import './globals.css'
 import ClientSideProviderTest from '@/components/clientSideProviderTest'
 
 const inter = Inter({ subsets: ['latin'] })
-
+// SEO Optimisation
 export const metadata = {
-  title: 'Next Blog App',
+  title: {
+    default: 'Next.js BlogApp 14 Homepage',
+    template: '%s | Next.js 14',
+  },
   description: 'Next.js starter app',
 }
 

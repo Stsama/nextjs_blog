@@ -9,6 +9,11 @@ import styles from './contact.module.css'
 // Dynamic import with no SSR (Server Side Rendering)
 // const HydrationTestNoSSR = dynamic(() => import('@/components/HydrationTest'), {ssr: false});
 
+export const metadata = {
+  title: 'Contact Page',
+  description: 'This is the contact page of the Next Blog App',
+}
+
 const ContactPage = () => {
   // const a = Math.random()
 
