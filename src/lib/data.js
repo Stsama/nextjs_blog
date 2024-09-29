@@ -1,33 +1,65 @@
-const users = [
-    {id:1, name: 'John' },
-    {id:2, name: 'Jane' },
-    {id:3, name: 'Joe' },
-    {id:4, name: 'Jack' },
-    {id:5, name: 'Jill' },
-    
-]
+import { Post, User } from './models';
+import { connectToDb } from './utils';
 
-const posts = [
-    {id: 1, title: 'Post 1', body: "...............", userId: 1 },
-    {id: 2, title: 'Post 2', body: "...............", userId: 2 },
-    {id: 3, title: 'Post 3', body: "...............", userId: 1 },
-    {id: 4, title: 'Post 4', body: "...............", userId: 3 },
-    {id: 5, title: 'Post 5', body: "...............", userId: 3 },
-]
+// const users = [
+//     {id:1, name: 'John' },
+//     {id:2, name: 'Jane' },
+//     {id:3, name: 'Joe' },
+//     {id:4, name: 'Jack' },
+//     {id:5, name: 'Jill' },
+    
+// ]
+
+// const posts = [
+//     {id: 1, title: 'Post 1', body: "...............", userId: 1 },
+//     {id: 2, title: 'Post 2', body: "...............", userId: 2 },
+//     {id: 3, title: 'Post 3', body: "...............", userId: 1 },
+//     {id: 4, title: 'Post 4', body: "...............", userId: 3 },
+//     {id: 5, title: 'Post 5', body: "...............", userId: 3 },
+// ]
 
 
 export const getPosts = async () => {
-    return posts
+    try {
+        connectToDb();
+        const posts = await Post.find()
+        return posts
+    }catch(e) {
+        console.error(e);    
+    }
+
 }
 
-export const getPost = async (id) => {
-    return posts.find((post) => post.id === parseInt(id))
+export const getPost = async (slug) => {
+    try {
+        connectToDb();
+        const post = await Post.findOne({ slug: slug});
+        return post
+    }catch(e) {
+        console.error(e);    
+    }
+
 }
 
-export const getUsers = async () => {
-    return users
-}
 
 export const getUser = async (id) => {
-    return users.find((user) => user.id === parseInt(id))
+    try {
+        connectToDb();
+        const user = await User.findById(id)
+        return user
+    }catch(e) {
+        console.error(e);    
+    }
+
+}
+
+
+export const getUsers = async (id) => {
+    try {
+        connectToDb();
+        const users = await User.find()
+        return users
+    }catch(e) {
+        console.error(e);    
+    }
 }
