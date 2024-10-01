@@ -15,13 +15,13 @@ export const generateMetadata = async ({params}) => {
 
 
 // Fetching data from an API
-// const getSinglePost = async (slug) => {
-//   const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`)
-//   if(!response.ok) {
-//     throw new Error('Something went wrong')
-//   }
-//   return response.json()
-// }
+const getSinglePost = async (slug) => {
+  const response = await fetch(`http://localhost:3000/api/blog/${slug}`)
+  if(!response.ok) {
+    throw new Error('Something went wrong')
+  }
+  return response.json()
+}
 
 
 const SinglePostPage = async ({params}) => {
@@ -32,10 +32,10 @@ const SinglePostPage = async ({params}) => {
 
   const {slug} = params;
 
-  // const post = await getSinglePost(slug)
+  const post = await getSinglePost(slug)
 
   // fetching data without an API
-  const post = await getPost(slug)
+  // const post = await getPost(slug)
 
   return (
     <div className={styles.container} >

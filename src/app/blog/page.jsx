@@ -3,7 +3,7 @@ import PostCard from '@/components/postCard/PostCard'
 import { getPosts } from '@/lib/data'
 
 // Fetching data from an API
-// const getData = async () => {
+const getData = async () => {
 
   // By default next js will cache the data but if you want to disable the cache you can use the following code
   // const response = await fetch('https://jsonplaceholder.typicode.com/posts', {cache: 'no-store'})
@@ -18,21 +18,21 @@ import { getPosts } from '@/lib/data'
   // const response = await fetch('https://jsonplaceholder.typicode.com/posts', {cache: 'max-age=604800'}) // This will cache the data for a week
   // const response = await fetch('https://jsonplaceholder.typicode.com/posts', {cache: 'max-age=60'}) // This will cache the data for 60 seconds
 
-  // const response = await fetch('https://jsonplaceholder.typicode.com/posts', {next:{revalidate: 3600}}) // This will refresh the data every 1 hour
+  const response = await fetch('http://localhost:3000/api/blog', {next:{revalidate: 3600}}) // This will refresh the data every 1 hour
 
 //   const response = await fetch('https://jsonplaceholder.typicode.com/posts')
-//   if(!response.ok) {
-//     throw new Error('Something went wrong')
-//   }
-//   return response.json()
-// }
+  if(!response.ok) {
+    throw new Error('Something went wrong')
+  }
+  return response.json()
+}
 
 const BlogPage = async () => {
 
-  // const posts = await getData()
+  const posts = await getData()
 
   // Fetching data without an API
-  const posts = await getPosts()
+  // const posts = await getPosts()
 
   // console.log(posts)
 
