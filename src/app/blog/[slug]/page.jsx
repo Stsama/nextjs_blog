@@ -9,7 +9,7 @@ export const generateMetadata = async ({params}) => {
   const post = await getPost(slug)
   return {
     title: post.title,
-    description: post.body.slice(0, 100)
+    description: post.body
   }
 }
 
